@@ -1,65 +1,7 @@
 <!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-
-  <!-- Fallback redirect if iframes are blocked or JS disabled -->
-  <noscript>
-    <meta http-equiv="refresh" content="0; url=https://stephanie.static.domains">
-  </noscript>
-
-  <title>Loading…</title>
-  <style>
-    html, body {
-      height: 100%;
-      margin: 0;
-      background: #000; /* optional */
-    }
-    .wrap, iframe {
-      height: 100%;
-      width: 100%;
-      border: 0;
-      display: block;
-    }
-    /* optional: hide scrollbars on the outer page */
-    body { overflow: hidden; }
-  </style>
-</head>
-<body>
-  <div class="wrap">
-    <iframe id="app" src="about:blank" allowfullscreen></iframe>
-  </div>
-
-  <script>
-    // Base you want to mask
-    const BASE = "https://stephanie.static.domains";
-
-    // Preserve path, query, and hash so /foo?bar#baz also works
-    const target = BASE.replace(/\/$/, "") +
-      window.location.pathname +
-      window.location.search +
-      window.location.hash;
-
-    const iframe = document.getElementById("app");
-    iframe.src = target;
-
-    // If the site blocks framing, navigate instead (keeps things usable)
-    iframe.addEventListener("error", () => {
-      window.location.replace(target);
-    });
-
-    // Basic CSP-frame detection (not bulletproof, but helps UX)
-    setTimeout(() => {
-      try {
-        // Will throw if cross-origin and blocked from loading
-        const loaded = iframe.contentWindow && iframe.contentDocument;
-        // If nothing seems loaded after a short delay, hard-redirect
-        if (!loaded) window.location.replace(target);
-      } catch (e) {
-        // Cross-origin access throws – assume it loaded; do nothing
-      }
-    }, 1200);
-  </script>
-</body>
-</html>
+<meta charset="utf-8">
+<title>Redirecting…</title>
+<link rel="canonical" href="https://stephanie.static.domains">
+<meta http-equiv="refresh" content="0; url=https://stephanie.static.domains">
+<script>location.replace("https://stephanie.static.domains" + location.pathname + location.search + location.hash);</script>
+<p>If you’re not redirected, <a href="https://stephanie.static.domains">click here</a>.</p>
